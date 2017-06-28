@@ -1,0 +1,93 @@
+buildscript {
+	repositories {
+	    jcenter()
+	    mavenCentral()   
+	}
+	dependencies {
+		//classpath 'org.akhikhl.gretty:gretty:1.4.2'		// only needed when apply plugin is used -- currently problems with farm,better use github version 
+		
+   	}	
+}
+
+allprojects {
+	// add configurations for all projects here 	
+	//apply plugin: 'org.akhikhl.gretty'				// needs classpath in buildscript
+	apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+}
+
+subprojects {
+	// add configurations only for subprojects here
+
+  	repositories {
+	    jcenter()
+	    mavenCentral()
+	}	
+	
+	
+  	apply plugin: 'java'		
+  	apply plugin: 'war'					
+  	apply plugin: 'eclipse'
+  	apply plugin: 'eclipse-wtp'
+	
+	gretty {
+    	debugSuspend = false				// suspend start until debugger is attached 
+    	debugPort = 5005					// port to attach eclipse-debugger
+ 		httpPort = 8080
+ 		managedClassReload = true			// reload server when editing managed Classes (e.g. ManagedBeans)
+ 		scanInterval = 1
+ 		//classPath 'build/classes'
+ 		interactiveMode = 'rebuildAndRestartOnKeyPress'
+ 	}
+  
+  	// configure eclipse projects
+ 	eclipse {
+ 		classpath { defaultOutputDir = file('build-eclipse') }
+ 		jdt {								// set Java Runtime
+    		javaRuntimeName = "JavaSE-1.8"
+    		sourceCompatibility = 1.8
+    		targetCompatibility = 1.8
+  		}
+  		wtp {								// add facets to projects
+    		facet { 				            
+            	facet name: 'java', version: '1.8'
+    		}
+  		}
+	}
+
+ 	
+ 	dependencies {
+   			
+    	testCompile 'junit:junit:4.12'  
+		testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'	  
+		
+		testCompile group: 'junit', name: 'junit', version: '4.+'
+		testCompile group: 'org.mockito', name: 'mockito-core', version: '2.+'
+		  	   	
+	}
+
+
+	test {
+		debug = false									// enable debugging during tests		
+		//jvmArgs 
+    	testLogging.showStandardStreams = true 			// show console output in tests
+	}
+	
+	
+	// creates folder structure if needed
+	task initSourceFolders { // add << before { to prevent executing during configuration phase
+	   sourceSets*.java.srcDirs*.each { it.mkdirs() }
+	   sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+	}
+	
+	
+	
+}
+
+
+//just for root project to provide gretty farm ability 
+farm {
+	webapp ':helloServlet'
+	webapp ':helloDataSource'
+}
+
+

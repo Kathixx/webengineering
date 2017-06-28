@@ -1,0 +1,6 @@
+[submodule "helloJsf"]
+	path = helloJsf
+	url = https://tuleap.intern.webtec.medien.hs-duesseldorf.de/plugins/git/webeng/hellojsf.git
+[submodule "jsf"]
+	path = jsf
+	url = https://tuleap.intern.webtec.medien.hs-duesseldorf.de/plugins/git/webeng/hellojsf.git

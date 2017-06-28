@@ -1,0 +1,40 @@
+dependencies {
+	compile 'javax.servlet:javax.servlet-api:3.1.0'	  
+	
+	// https://mvnrepository.com/artifact/com.h2database/h2
+	//compile group: 'com.h2database', name: 'h2', version: '1.4.193'
+	//compile localGroovy() 
+	compile("mysql:mysql-connector-java:5.1.35") 
+	compile("com.h2database:h2:1.4.193")  	
+	// https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/javax.servlet.jsp.jstl-api
+	compile group: 'javax.servlet.jsp.jstl', name: 'javax.servlet.jsp.jstl-api', version: '1.2.1'
+	// https://mvnrepository.com/artifact/taglibs/standard
+	compile group: 'taglibs', name: 'standard', version: '1.1.2'
+	
+	// add JSF library
+	compile group: 'org.apache.myfaces.core', name: 'myfaces-impl', version: '2.2.+'
+}
+
+
+gretty {
+  	contextPath = '/webengPro'
+  	debugSuspend= false	
+  	
+}
+
+eclipse.wtp.facet {			// add facets to projects
+  	facet name: 'jst.web', version: '3.0'
+  	facet name: 'jst.jsf', version: '2.2'
+}
+eclipse.wtp.component { contextPath = project.webAppDirName	}
+ 
+ // use WebContent-Folder as Main Directory
+project.webAppDirName = 'WebContent'
+
+
+// put compiled classes into WEB-INF-Folder to make annotated managed beans recognized
+sourceSets {
+	main {
+   		output.classesDir   = project.webAppDirName + '/WEB-INF/classes'
+   	}
+} 

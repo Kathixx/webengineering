@@ -1,0 +1,50 @@
+
+//http://www.h2database.com/html/datatypes.html
+// http://www.h2database.com/html/grammar.html
+
+
+// Identity ist ein vorgegebener Datentyp der H2 Database und ist ein BIGIN
+// die Identity ist autoIncrementell und wird nur einmal verwendet
+
+CREATE TABLE User (
+	id IDENTITY,
+	name VARCHAR(20) NOT NULL,
+	password VARCHAR(25) NOT NULL,
+	sessionId VARCHAR(255),
+	PRIMARY KEY (id)
+);
+
+
+CREATE TABLE Post (
+	id IDENTITY,
+	title VARCHAR(255) NOT NULL,
+	message VARCHAR(255) NOT NULL,
+	image BLOB,
+	timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	user BIGINT NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (user) REFERENCES User(id)
+);
+
+CREATE TABLE Comment(
+	id IDENTITY,
+	message VARCHAR(255) NOT NULL,
+	timepstamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	user BIGINT,
+	post BIGINT,
+	PRIMARY KEY (id),
+	FOREIGN KEY (post) REFERENCES Post(id),
+	FOREIGN KEY (user) REFERENCES User(id)
+);
+
+
+
+
+INSERT INTO User (name, password, sessionId) VALUES ('kathi', 'meinPasswort', null);
+
+INSERT INTO User (name, password, sessionId) VALUES ('vicky', 'meinPasswort', null);
+
+Insert INTO Post (title, message, image, user) VALUES ('Mein erster Post', 'Herzlich Willkommen auf unserem Blog',null,1);
+
+Insert INTO Comment (message, user, post) VALUES ('LIKE', 2, 1);
+
