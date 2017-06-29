@@ -1,12 +1,24 @@
-2017-06-28 21:30:04 jdbc[3]: exception
+2017-06-29 16:52:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Tabelle "USER" nicht gefunden
+Table "USER" not found; SQL statement:
+SELECT * FROM User WHERE name=? [42102-193]
+2017-06-29 16:52:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Tabelle "USER" nicht gefunden
+Table "USER" not found; SQL statement:
+SELECT * FROM User WHERE name=? [42102-193]
+2017-06-29 16:52:17 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLException: Tabelle "USER" nicht gefunden
 Table "USER" not found; SQL statement:
 INSERT INTO User ( name, password, sessionid) VALUES (?,?,?) [42102-193]
-2017-06-28 21:30:06 jdbc[3]: exception
+2017-06-29 16:52:30 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLException: Tabelle "USER" nicht gefunden
 Table "USER" not found; SQL statement:
-INSERT INTO User ( name, password, sessionid) VALUES (?,?,?) [42102-193]
-2017-06-29 13:26:11 jdbc[3]: exception
+SELECT * FROM User WHERE name=? [42102-193]
+2017-06-29 16:52:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Tabelle "USER" nicht gefunden
+Table "USER" not found; SQL statement:
+SELECT * FROM User WHERE name=? [42102-193]
+2017-06-29 16:52:30 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLException: Tabelle "USER" nicht gefunden
 Table "USER" not found; SQL statement:
 INSERT INTO User ( name, password, sessionid) VALUES (?,?,?) [42102-193]

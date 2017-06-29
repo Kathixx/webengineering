@@ -1,3 +1,4 @@
+
 package businesslogic;
 
 import java.util.List;
@@ -23,6 +24,13 @@ public class UserManager {
 		return userDAO.addUser(newUser);
 	}
 	
+	public boolean getUserByName(String name){
+		return userDAO.getUserByName(name);
+	}
+	
+	public boolean findName (String name){
+		return userDAO.findName(name);
+	}
 	
 
 }

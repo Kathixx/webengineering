@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html 
@@ -22,16 +23,28 @@ xmlns:h="http://java.sun.com/jsf/html">
 	</div>
 </nav>
 
+
+<div class="row">
+			<div class="col-lg-offset-4 col-lg-4">
+				<h:outputText class="alert alert-warning" role="alert" value="#{user.errors}"></h:outputText>
+			</div>
+	</div>
+	
+	
 <div class="container ">
+
+	
+
 	<div class="jumbotron">
 		<div class="row">
 			<div class="col-lg-offset-4 col-lg-4">
 				<h1> Registrieren</h1>
 				<p>Herzlich Willkommen auf Postit!<br> Hier kannst du dich registrieren.</br></p>
+
 				<h:form id="login-form">
-					Wähle deinen Benutzernamen:<h:inputText class="form-control" id="username" value="#{user.name}"></h:inputText>
+					Wähle deinen Benutzernamen:<h:inputText class="form-control" id="username" value="#{user.name}" ></h:inputText>
 					<br></br>
-					Wähle dein Passwort: <h:inputText class="form-control" id="password" value="#{user.password}"></h:inputText>
+					Wähle dein Passwort: <h:inputText class="form-control"  id="password" value="#{user.password}" ></h:inputText>
 					<br></br>
 					Bitte wiederhole dein Passwort: <h:inputText class="form-control" id="password2" ></h:inputText>
 					<h:commandButton class="btn" id="btn-register" value="Registrieren" action="#{user.add}"></h:commandButton>

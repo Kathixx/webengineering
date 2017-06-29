@@ -1,3 +1,4 @@
+
 package presentation;
 
 import java.io.Serializable;
@@ -20,6 +21,8 @@ public class User implements Serializable {
 	// private Variablen 
 	private String name;
 	private String password;
+	private String errors;
+	private String success;
 	
 	// Manager
 	UserManager manager= new UserManager();
@@ -52,14 +55,60 @@ public class User implements Serializable {
 		this.password = password;
 	}
 	
+	
+	public String getSuccess() {
+		return success;
+	}
+
+
+	public void setSuccess(String success) {
+		this.success = success;
+	}
+	
+	
+	public String getErrors() {
+		return errors;
+	}
+
+
+	public void setErrors(String errors) {
+		this.errors = errors;
+	}
+
 	// Methoden
+	
+	// f�gt beim Registriervorgang einen neuen User in die Datenbank ein
+	//TODO �berpr�fung ob beide Passw�rter gleich sind, sonst fehlermeldung auswerfen
+	// TODO best�tigung dass Registrierung erfolgreich war und man sich jetzt einloggen kann
 	public String add (){
+		if (!nameAlreadyExists(this.name)){
 		UserTransferObject newUser= new UserTransferObject();
 		newUser.setName(this.name);
 		newUser.setPassword(this.password);
 		manager.addUserData(newUser);
-		return "";
+		setSuccess("<b>Herzlich willkommen!</b> Du wurdest erfolgreich registriert.");
+		return "Login.xhtml";
+		}
+		else{
+			errors="Benutzername bereits vergeben.Bitte suche dir einen anderen Benutzernamen aus!";
+			return "Register.xhtml";
+		}
 	}
+	
+	// Methode die checkt ob Login erfolgreich war
+	public String checkLogin(){
+		
+		return "";
+		
+	}
+	
+	public boolean nameAlreadyExists(String newName){
+		System.out.println("CHeckicheck!"+manager.findName(newName));
+		return manager.findName(newName);
+	}
+
+
+	
 	
 	
 	

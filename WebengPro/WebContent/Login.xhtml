@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html 
@@ -23,6 +24,11 @@ xmlns:h="http://java.sun.com/jsf/html">
 </nav>
 
 <div class="container ">
+<div class="row">
+			<div class="col-lg-offset-4 col-lg-4">
+				<h:outputText class="alert alert-success" role="alert" value="#{user.success}"></h:outputText>
+			</div>
+	</div>
 	<div class="jumbotron">
 		<div class="row">
 			<div class="col-lg-offset-4 col-lg-4">
@@ -33,7 +39,7 @@ xmlns:h="http://java.sun.com/jsf/html">
 					<br></br>
 					Passwort: <h:inputText class="form-control" id="password"  value="#{user.password}"></h:inputText>
 					<br></br>
-					<h:commandButton class="btn" id="btn-login" value="Einloggen" action="#{user.check}"></h:commandButton>
+					<h:commandButton class="btn" id="btn-login" value="Einloggen" action="#{user.checkLogin}"></h:commandButton>
 				</h:form>
 				<small> Noch nicht angemeldet? Dann <a href="Register.xhtml">registrier</a> dich jetzt!</small>
 			</div>
