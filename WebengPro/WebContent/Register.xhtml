@@ -42,11 +42,23 @@ xmlns:h="http://java.sun.com/jsf/html">
 				<p>Herzlich Willkommen auf Postit!<br> Hier kannst du dich registrieren.</br></p>
 
 				<h:form id="login-form">
-					Wähle deinen Benutzernamen:<h:inputText class="form-control" id="username" value="#{user.name}" ></h:inputText>
+					Wähle deinen Benutzernamen:
+					<h:inputText class="form-control" id="username" value="#{user.name}" >
+						<f:validateLength minimum="3" maximum="20"/>
+						<f:validateRequired/>
+				    </h:inputText>
 					<br></br>
-					Wähle dein Passwort: <h:inputText class="form-control"  id="password" value="#{user.password}" ></h:inputText>
+					Wähle dein Passwort:
+					<h:inputText class="form-control"  id="password" value="#{user.password}" >
+						<f:validateLength minimum="3" maximum="20"/>
+						<f:validateRequired/>
+					</h:inputText>
 					<br></br>
-					Bitte wiederhole dein Passwort: <h:inputText class="form-control" id="password2" ></h:inputText>
+					Bitte wiederhole dein Passwort: 
+					<h:inputText class="form-control" id="password2" >
+						<f:validateLength minimum="3" maximum="20"/>
+						<f:validateRequired/>
+					</h:inputText>
 					<h:commandButton class="btn" id="btn-register" value="Registrieren" action="#{user.add}"></h:commandButton>
 				</h:form>
 			</div>

@@ -77,17 +77,19 @@ public class User implements Serializable {
 
 	// Methoden
 	
-	// fï¿½gt beim Registriervorgang einen neuen User in die Datenbank ein
-	//TODO ï¿½berprï¿½fung ob beide Passwï¿½rter gleich sind, sonst fehlermeldung auswerfen
-	// TODO bestï¿½tigung dass Registrierung erfolgreich war und man sich jetzt einloggen kann
+	// fügt beim Registriervorgang einen neuen User in die Datenbank ein
+	//TODO Überprüfung ob beide Passwörter gleich sind, sonst fehlermeldung auswerfen
+	// TODO bestätigung dass Registrierung erfolgreich war und man sich jetzt einloggen kann
 	public String add (){
 		if (!nameAlreadyExists(this.name)){
 		UserTransferObject newUser= new UserTransferObject();
 		newUser.setName(this.name);
-		newUser.setPassword(this.password);
-		manager.addUserData(newUser);
-		setSuccess("<b>Herzlich willkommen!</b> Du wurdest erfolgreich registriert.");
-		return "Login.xhtml";
+			//if(this.password.equals(password2)){
+				newUser.setPassword(this.password);
+				manager.addUserData(newUser);
+				setSuccess("<b>Herzlich willkommen!</b> Du wurdest erfolgreich registriert.");
+				return "Login.xhtml";
+			//}  else errors="Passwörter stimmen nicht überein";
 		}
 		else{
 			errors="Benutzername bereits vergeben.Bitte suche dir einen anderen Benutzernamen aus!";
@@ -96,20 +98,29 @@ public class User implements Serializable {
 	}
 	
 	// Methode die checkt ob Login erfolgreich war
-	public String checkLogin(){
-		
+	// leitet an hauptseite weiter
+	public String checkLogin(String name){
+		//existiert der user
+		if (manager.getUserByName(this.name)){
+			//stimmt das passwort
+			if(manager.findPassword(this.name)){
+				//dann erfolgreich
+				setSuccess("<b>Herzlich willkommen!</b> Du hast dich erfolgreich eingeloggt.");
+				//Hauptseite, die nach login kommt aufrufen
+				return "MainPage.xhtml";
+			}
+		} 
+		else {
+			//sonst fehler
+			return "Fehler bei den Nutzer Eingaben";
+		}
 		return "";
-		
 	}
+	
 	
 	public boolean nameAlreadyExists(String newName){
 		System.out.println("CHeckicheck!"+manager.findName(newName));
 		return manager.findName(newName);
 	}
 
-
-	
-	
-	
-	
 }

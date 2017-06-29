@@ -19,6 +19,7 @@ public class H2UserDAO implements UserDAO {
 	String stmtInsert="INSERT INTO User ( name, password, sessionid) VALUES (?,?,?)";
 	String stmtGetUserByName="SELECT * FROM User WHERE name=?";
 	String stmtFindName="SELECT * FROM User WHERE name=?";
+	String stmtFindPassword="SELECT password FROM User WHERE name=?";
 
 	
 	// Methoden
@@ -60,6 +61,21 @@ public class H2UserDAO implements UserDAO {
 	public boolean findName(String name) {
 		try{
 			PreparedStatement stmt=con.prepareStatement(stmtFindName);
+			stmt.setString(1, name);
+			ResultSet rs=stmt.executeQuery();
+			if (rs==null)return false;
+			else return true;
+		}
+		catch (SQLException e){
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	@Override
+	public boolean findPassword(String name) {
+		try{
+			PreparedStatement stmt=con.prepareStatement(stmtFindPassword);
 			stmt.setString(1, name);
 			ResultSet rs=stmt.executeQuery();
 			if (rs==null)return false;

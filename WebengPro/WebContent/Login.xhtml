@@ -35,11 +35,19 @@ xmlns:h="http://java.sun.com/jsf/html">
 				<h1> Login</h1>
 				<p>Herzlich Willkommen auf Postit!<br> Bitte melde dich an um fortzufahren.</br></p>
 				<h:form id="login-form">
-					Benutzername:<h:inputText class="form-control" id="username" value="#{user.name}"></h:inputText>
+					Benutzername:<h:inputText class="form-control" id="username" value="#{user.name}">
+										<f:validateLength minimum="3" maximum="15"/>
+										<f:validateRequired/>
+								 </h:inputText>
+					<h:message for="username" style="color:red" tooltip="true" showSummary="true" showDetail="true"/>			 
 					<br></br>
-					Passwort: <h:inputText class="form-control" id="password"  value="#{user.password}"></h:inputText>
+					Passwort: <h:inputText class="form-control" id="password"  value="#{user.password}">
+									<f:validateLength minimum="3" maximum="20"/>
+									<f:validateRequired/>
+							  </h:inputText>
+					<h:message for="password" style="color:red" tooltip="true" showSummary="true" showDetail="true"/>
 					<br></br>
-					<h:commandButton class="btn" id="btn-login" value="Einloggen" action="#{user.checkLogin}"></h:commandButton>
+					<h:commandButton class="btn" id="btn-login" value="Einloggen" action="#{user.checkLogin(name)}"></h:commandButton>
 				</h:form>
 				<small> Noch nicht angemeldet? Dann <a href="Register.xhtml">registrier</a> dich jetzt!</small>
 			</div>

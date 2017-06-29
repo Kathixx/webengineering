@@ -32,5 +32,9 @@ public class UserManager {
 		return userDAO.findName(name);
 	}
 	
+	public boolean findPassword (String name){
+		return userDAO.findPassword(name);
+	}
+	
 
 }
