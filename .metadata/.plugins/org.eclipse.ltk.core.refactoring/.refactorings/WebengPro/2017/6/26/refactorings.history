@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;presentation.User.success&apos; in &apos;presentation.User&apos;&#x0D;&#x0A;- Original project: &apos;WebengPro&apos;&#x0D;&#x0A;- Original element: &apos;presentation.User.success&apos;&#x0D;&#x0A;- Getter method name: &apos;getSuccess&apos;&#x0D;&#x0A;- Setter method name: &apos;setSuccess&apos;&#x0D;&#x0A;- Field visibility: &apos;public&apos;&#x0D;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;success&apos;" flags="589830" getter="getSuccess" id="org.eclipse.jdt.ui.self.encapsulate" input="/src\/main\/java&lt;presentation{User.java[User^success" insertion="9" setter="setSuccess" stamp="1498739163747" version="1.0" visibility="1"/>
+</session>
