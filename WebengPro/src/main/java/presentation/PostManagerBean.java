@@ -1,24 +1,42 @@
 package presentation;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
+import businesslogic.PostManager;
+import transfer.PostTransferObject;
+
 @ManagedBean (name="postList")
+@RequestScoped
 public class PostManagerBean {
 
-	List <Post> allPost;
+	List <PostTransferObject> allPost= new ArrayList <PostTransferObject> ();
 	
-	public PostManagerBean(){};
+	public PostManagerBean(){
+		System.out.println("PostManagerBean wurde erstellt");
+	};
 	
 	
-	public List getAllPost(){
+	
+	public List<PostTransferObject> getAllPost() {
 		return allPost;
 	}
+
 	
-	public List setAllPost(List allPost){
-		this.allPost= allPost;
+	public void setAllPost(List<PostTransferObject> allPost) {
+		this.allPost = allPost;
 	}
 
+	@PostConstruct
 	private void getPostFromDB(){
+		System.out.println("getPostFromDB wird aufgerufen");
 		PostManager manager= new PostManager();
-		List allPostFromDB=manager.getAllPost();
+		System.out.println("Postliste: "+manager.getAllPost().size());
+		List<PostTransferObject> allPostFromDB=manager.getAllPost();
 		this.setAllPost(allPostFromDB);
 	}
 }

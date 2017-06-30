@@ -29,10 +29,10 @@ xmlns:h="http://java.sun.com/jsf/html">
 		<div class="row">
 			<div class="col-lg-offset-4 col-lg-4">
 				<p><br>Alle Posts</br></p>
-				<h:dataTable var="alleposts" value="#{PostManagerBean.allPost}"/>
+				<h:dataTable var="allPosts" value="#{postList.allPost}">
 					<h:column>
-						<h:outputText value="#{alleposts.title}"/>
-						<h:outputText value="#{alleposts.message}"/>
+						<h:outputText value="#{allPosts.title}"/>
+						<h:outputText value="#{allPosts.message}"/>
 					</h:column>
 				</h:dataTable>
 			</div>

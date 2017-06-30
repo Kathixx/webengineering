@@ -60,7 +60,7 @@ public class H2DAOFactory extends DAOFactory {
 	@Override
 	public PostDAO getPostDAO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new H2PostDAO();
 	}
 
 

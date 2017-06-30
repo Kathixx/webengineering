@@ -9,10 +9,14 @@ public class PostTransferObject {
 	
 	//Blob image;
 	//String user;
+	
+	public PostTransferObject(){
+		System.out.println("PostTransferObject wurde erstellt.");
+	}
 
 	//Getter und Setter
 	public String getTitle() {
-		return name;
+		return title;
 	}
 	public void setTitle(String title) {
 		this.title = title;
