@@ -26,8 +26,9 @@ xmlns:h="http://java.sun.com/jsf/html">
 <div class="container ">
 <div class="row">
 			<div class="col-lg-offset-4 col-lg-4">
-				<h:outputText class="alert alert-success" role="alert" value="#{user.success}"></h:outputText>
+				<h:outputText class="alert alert-success" role="alert" value="#{user.errors}" rendered="{user.errors!=null}"></h:outputText>
 			</div>
+			
 	</div>
 	<div class="jumbotron">
 		<div class="row">
@@ -35,17 +36,9 @@ xmlns:h="http://java.sun.com/jsf/html">
 				<h1> Login</h1>
 				<p>Herzlich Willkommen auf Postit!<br> Bitte melde dich an um fortzufahren.</br></p>
 				<h:form id="login-form">
-					Benutzername:<h:inputText class="form-control" id="username" value="#{user.name}">
-										<f:validateLength minimum="3" maximum="15"/>
-										<f:validateRequired/>
-								 </h:inputText>
-					<h:message for="username" style="color:red" tooltip="true" showSummary="true" showDetail="true"/>			 
+					Benutzername:<h:inputText class="form-control" id="username" value="#{user.name}"> </h:inputText>			 
 					<br></br>
-					Passwort: <h:inputText class="form-control" id="password"  value="#{user.password}">
-									<f:validateLength minimum="3" maximum="20"/>
-									<f:validateRequired/>
-							  </h:inputText>
-					<h:message for="password" style="color:red" tooltip="true" showSummary="true" showDetail="true"/>
+					Passwort: <h:inputText class="form-control" id="password"  value="#{user.password}"></h:inputText>
 					<br></br>
 					<h:commandButton class="btn" id="btn-login" value="Einloggen" action="#{user.checkLogin(name)}"></h:commandButton>
 				</h:form>
@@ -53,6 +46,7 @@ xmlns:h="http://java.sun.com/jsf/html">
 			</div>
 		</div>
 	</div>
+
 </div>
 
 </body>

@@ -19,7 +19,7 @@ public class H2UserDAO implements UserDAO {
 	String stmtInsert="INSERT INTO User ( name, password, sessionid) VALUES (?,?,?)";
 	String stmtGetUserByName="SELECT * FROM User WHERE name=?";
 	String stmtFindName="SELECT * FROM User WHERE name=?";
-	String stmtFindPassword="SELECT password FROM User WHERE name=?";
+	String stmtGetPassword="SELECT password FROM User WHERE name=?";
 
 	
 	// Methoden
@@ -31,7 +31,7 @@ public class H2UserDAO implements UserDAO {
 			stmt.setString(1, newUser.getName());
 			stmt.setString(2, newUser.getPassword());
 			stmt.setString(3, newUser.getSessionId());
-			//TODO RESTULTSET
+			stmt.execute();
 			return true;
 		}
 		catch (SQLException e){
@@ -46,8 +46,9 @@ public class H2UserDAO implements UserDAO {
 		try{
 			PreparedStatement stmt=con.prepareStatement(stmtGetUserByName);
 			stmt.setString(1, name);
-			stmt.execute();
-			return true;
+			ResultSet rs=stmt.executeQuery();
+			if(!rs.next())return false;
+			else return true;
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -63,7 +64,7 @@ public class H2UserDAO implements UserDAO {
 			PreparedStatement stmt=con.prepareStatement(stmtFindName);
 			stmt.setString(1, name);
 			ResultSet rs=stmt.executeQuery();
-			if (rs==null)return false;
+			if (!rs.next())return false;
 			else return true;
 		}
 		catch (SQLException e){
@@ -73,17 +74,19 @@ public class H2UserDAO implements UserDAO {
 	}
 	
 	@Override
-	public boolean findPassword(String name) {
+	public String getPassword (String name) {
+		String password=null;
 		try{
-			PreparedStatement stmt=con.prepareStatement(stmtFindPassword);
+			PreparedStatement stmt=con.prepareStatement(stmtGetPassword);
 			stmt.setString(1, name);
-			ResultSet rs=stmt.executeQuery();
-			if (rs==null)return false;
-			else return true;
+			ResultSet rs= stmt.executeQuery();
+			if (rs.next())password=rs.getNString(1);
+			return password;
+			
 		}
 		catch (SQLException e){
 			e.printStackTrace();
-			return false;
+			return password;
 		}
 	}
 	

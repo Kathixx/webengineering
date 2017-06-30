@@ -26,14 +26,14 @@ xmlns:h="http://java.sun.com/jsf/html">
 
 <div class="row">
 			<div class="col-lg-offset-4 col-lg-4">
-				<h:outputText class="alert alert-warning" role="alert" value="#{user.errors}"></h:outputText>
+				<h:outputText class="alert alert-warning" role="alert" value="#{user.errors}" ></h:outputText>
 			</div>
 	</div>
 	
 	
 <div class="container ">
 
-	
+	<h:messages id="registerErrorMessages" class="alert alert-warning"></h:messages>
 
 	<div class="jumbotron">
 		<div class="row">
@@ -47,24 +47,20 @@ xmlns:h="http://java.sun.com/jsf/html">
 						<f:validateLength minimum="3" maximum="20"/>
 						<f:validateRequired/>
 				    </h:inputText>
-				    <h:message for="username" style="color:red" tooltip="true" showSummary="true" showDetail="true"/>
+				   
 					<br></br>
 					Wähle dein Passwort:
 					<h:inputText class="form-control"  id="password" value="#{user.password}" >
 						<f:validateLength minimum="3" maximum="20"/>
 						<f:validateRequired/>
 					</h:inputText>
-					<h:message for="username" style="color:red" tooltip="true" showSummary="true" showDetail="true"/>
 					<br></br>
 					Bitte wiederhole dein Passwort: 
-					<h:inputText class="form-control" id="password2" >
-						<f:validateLength minimum="3" maximum="20"/>
-						<f:validateRequired/>
-					</h:inputText>
-					<h:message for="username" style="color:red" tooltip="true" showSummary="true" showDetail="true"/>
+					<h:inputText class="form-control" id="password2" ></h:inputText>
 					<h:commandButton class="btn" id="btn-register" value="Registrieren" action="#{user.add}"></h:commandButton>
 					<!--h:commandButton class="btn" id="btn-register" value="Cancel" action="Register.xhtml" immediate="true"/-->
 				</h:form>
+				
 			</div>
 		</div>
 	</div>

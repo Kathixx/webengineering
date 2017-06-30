@@ -2,7 +2,8 @@
 package presentation;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -21,9 +22,10 @@ public class User implements Serializable {
 	// private Variablen 
 	private String name;
 	private String password;
-	private String errors;
+	private List <String> errors=new ArrayList <String>();;
 	private String success;
 	
+
 	// Manager
 	UserManager manager= new UserManager();
 
@@ -66,33 +68,35 @@ public class User implements Serializable {
 	}
 	
 	
-	public String getErrors() {
+	public List <String> getErrors() {
 		return errors;
 	}
 
 
-	public void setErrors(String errors) {
-		this.errors = errors;
+	public void setError(String error) {
+		this.errors.add(error);
 	}
+	
+	
 
 	// Methoden
 	
-	// fügt beim Registriervorgang einen neuen User in die Datenbank ein
-	//TODO Überprüfung ob beide Passwörter gleich sind, sonst fehlermeldung auswerfen
-	// TODO bestätigung dass Registrierung erfolgreich war und man sich jetzt einloggen kann
+	// fï¿½gt beim Registriervorgang einen neuen User in die Datenbank ein
+	//TODO ï¿½berprï¿½fung ob beide Passwï¿½rter gleich sind, sonst fehlermeldung auswerfen
+	// TODO bestï¿½tigung dass Registrierung erfolgreich war und man sich jetzt einloggen kann
 	public String add (){
 		if (!nameAlreadyExists(this.name)){
-		UserTransferObject newUser= new UserTransferObject();
-		newUser.setName(this.name);
-			//if(this.password.equals(password2)){
-				newUser.setPassword(this.password);
-				manager.addUserData(newUser);
-				setSuccess("<b>Herzlich willkommen!</b> Du wurdest erfolgreich registriert.");
-				return "Login.xhtml";
-			//}  else errors="Passwörter stimmen nicht überein";
+			UserTransferObject newUser= new UserTransferObject();
+			newUser.setName(this.name);
+				//if(this.password.equals(password2)){
+					newUser.setPassword(this.password);
+					manager.addUserData(newUser);
+					setSuccess("<b>Herzlich willkommen!</b> Du wurdest erfolgreich registriert.");
+					return "Login.xhtml";
+				//}  else errors="Passwï¿½rter stimmen nicht ï¿½berein";
 		}
 		else{
-			errors="Benutzername bereits vergeben.Bitte suche dir einen anderen Benutzernamen aus!";
+			setError("Benutzername bereits vergeben.Bitte suche dir einen anderen Benutzernamen aus!");
 			return "Register.xhtml";
 		}
 	}
@@ -100,26 +104,29 @@ public class User implements Serializable {
 	// Methode die checkt ob Login erfolgreich war
 	// leitet an hauptseite weiter
 	public String checkLogin(String name){
-		//existiert der user
-		if (manager.getUserByName(this.name)){
-			//stimmt das passwort
-			if(manager.findPassword(this.name)){
-				//dann erfolgreich
-				setSuccess("<b>Herzlich willkommen!</b> Du hast dich erfolgreich eingeloggt.");
+		System.out.println("aktueller UserName: "+this.name);
+		System.out.println("User ind DB gefunden: "+manager.getUserByName(this.name));
+		System.out.println("Passwort in DB gefunden: " +manager.getPassword(this.name));
+		//ÃœberprÃ¼fung ob User in DB existiert
+		if (!manager.getUserByName(this.name)){
+			setError("Der Benutzername exisitiert nicht.");
+		}
+		else{
+			//ÃœberprÃ¼fung Passwort
+			if(!manager.getPassword(this.name).equals(this.password)){
+				setError("Das eingegebene Passwort stimmt nicht Ã¼berein.");
+			}
+			else
 				//Hauptseite, die nach login kommt aufrufen
 				return "MainPage.xhtml";
-			}
-		} 
-		else {
-			//sonst fehler
-			return "Fehler bei den Nutzer Eingaben";
 		}
+		
 		return "";
 	}
 	
 	
 	public boolean nameAlreadyExists(String newName){
-		System.out.println("CHeckicheck!"+manager.findName(newName));
+		System.out.println("Benutzername bereits vergeben?: "+manager.findName(newName));
 		return manager.findName(newName);
 	}
 

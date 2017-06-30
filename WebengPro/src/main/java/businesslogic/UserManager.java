@@ -32,8 +32,8 @@ public class UserManager {
 		return userDAO.findName(name);
 	}
 	
-	public boolean findPassword (String name){
-		return userDAO.findPassword(name);
+	public String getPassword (String name){
+		return userDAO.getPassword(name);
 	}
 	
 

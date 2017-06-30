@@ -6,7 +6,7 @@
 	margin-bottom: 25px;
 }
 
-#passwordToShort{
-	height:100px;
+#registerErrorMessages{
+	list-style:none;
 	
 }

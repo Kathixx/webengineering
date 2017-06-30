@@ -83,6 +83,8 @@ atlassian-ide-plugin.xml
 
 # oh-my-zsh gradle plugin
 .gradletasknamecache
+*.metadata
+*/.metadata
 .metadata
 .metadata/**/*
 .metadata/.plugins/org.eclipse.m2e.logback.configuration/0.log
