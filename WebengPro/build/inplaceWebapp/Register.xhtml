@@ -47,19 +47,23 @@ xmlns:h="http://java.sun.com/jsf/html">
 						<f:validateLength minimum="3" maximum="20"/>
 						<f:validateRequired/>
 				    </h:inputText>
+				    <h:message for="username" style="color:red" tooltip="true" showSummary="true" showDetail="true"/>
 					<br></br>
 					Wähle dein Passwort:
 					<h:inputText class="form-control"  id="password" value="#{user.password}" >
 						<f:validateLength minimum="3" maximum="20"/>
 						<f:validateRequired/>
 					</h:inputText>
+					<h:message for="username" style="color:red" tooltip="true" showSummary="true" showDetail="true"/>
 					<br></br>
 					Bitte wiederhole dein Passwort: 
 					<h:inputText class="form-control" id="password2" >
 						<f:validateLength minimum="3" maximum="20"/>
 						<f:validateRequired/>
 					</h:inputText>
+					<h:message for="username" style="color:red" tooltip="true" showSummary="true" showDetail="true"/>
 					<h:commandButton class="btn" id="btn-register" value="Registrieren" action="#{user.add}"></h:commandButton>
+					<!--h:commandButton class="btn" id="btn-register" value="Cancel" action="Register.xhtml" immediate="true"/-->
 				</h:form>
 			</div>
 		</div>

@@ -55,7 +55,7 @@
 	</welcome-file-list>
 	<context-param>
 		<param-name>db.url</param-name>
-		<param-value>jdbc:h2:./build/WebEngProDB</param-value>
+		<param-value>jdbc:h2:./build/WebengPro</param-value>
 	</context-param>
 	<context-param>
 		<param-name>db.user</param-name>
