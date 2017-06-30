@@ -28,6 +28,7 @@ xmlns:h="http://java.sun.com/jsf/html">
 			<div class="col-lg-offset-4 col-lg-4">
 				<h:outputText class="alert alert-success" role="alert" value="#{user.success}"></h:outputText>
 			</div>
+			<h:message class="alert alert-warning" for="password" style="color:red" tooltip="true" showSummary="true" />
 	</div>
 	<div class="jumbotron">
 		<div class="row">
@@ -45,7 +46,8 @@ xmlns:h="http://java.sun.com/jsf/html">
 									<f:validateLength minimum="3" maximum="20"/>
 									<f:validateRequired/>
 							  </h:inputText>
-					<h:message for="password" style="color:red" tooltip="true" showSummary="true" showDetail="true"/>
+							  <h:message id="passwordToShort" class="alert alert-warning" for="password"  tooltip="true" showSummary="true" />
+							  
 					<br></br>
 					<h:commandButton class="btn" id="btn-login" value="Einloggen" action="#{user.checkLogin(name)}"></h:commandButton>
 				</h:form>
@@ -53,6 +55,7 @@ xmlns:h="http://java.sun.com/jsf/html">
 			</div>
 		</div>
 	</div>
+
 </div>
 
 </body>
