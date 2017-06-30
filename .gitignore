@@ -85,7 +85,10 @@ atlassian-ide-plugin.xml
 .gradletasknamecache
 *.metadata
 */.metadata
-.metadata
-.metadata/**/*
+/.metadata
+/.metadata/**/*
 .metadata/.plugins/org.eclipse.m2e.logback.configuration/0.log
 *.log
+
+WebengPro/build-eclipse/*
+WebengPro/build/*
