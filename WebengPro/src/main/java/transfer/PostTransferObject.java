@@ -11,7 +11,7 @@ public class PostTransferObject {
 	//String user;
 	
 	public PostTransferObject(){
-		System.out.println("PostTransferObject wurde erstellt.");
+		//System.out.println("PostTransferObject wurde erstellt.");
 	}
 
 	//Getter und Setter

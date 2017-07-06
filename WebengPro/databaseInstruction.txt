@@ -46,5 +46,10 @@ INSERT INTO User (name, password, sessionId) VALUES ('vicky', 'meinPasswort', nu
 
 Insert INTO Post (title, message, image, user) VALUES ('Mein erster Post', 'Herzlich Willkommen auf unserem Blog',null,1);
 
+Insert INTO Post (title, message, image, user) VALUES ('Mein zweiter Post', 'Dieser Blog ist total nützlich für unnützes Wissen zu verbreiten. Beispielsweise waren bisher nur Männer, und zwar genau 12, auf dem Mond. Emanzipiert die Mondbesiedlung!',null,1);
+
+Insert INTO Post (title, message, image, user) VALUES ('Teil Zwei Unnützes Wissen', 'Wusstest du, dass wennd ie gesamte Weltbevölkerung genauso dicht besiedelt leben würde wie in New York City, passte sie auf die Fläche des US-Staates Texas. KRAAAASSS!!',null,1);
+
+
 Insert INTO Comment (message, user, post) VALUES ('LIKE', 2, 1);
 
