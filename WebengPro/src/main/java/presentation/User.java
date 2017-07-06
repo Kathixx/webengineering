@@ -92,12 +92,12 @@ public class User implements Serializable {
 					newUser.setPassword(this.password);
 					manager.addUserData(newUser);
 					setSuccess("<b>Herzlich willkommen!</b> Du wurdest erfolgreich registriert.");
-					return "Login.xhtml";
+					return "ok";//return "Login.xhtml";
 				//}  else errors="Passw�rter stimmen nicht �berein";
 		}
 		else{
 			setError("Benutzername bereits vergeben.Bitte suche dir einen anderen Benutzernamen aus!");
-			return "Register.xhtml";
+			return "verweigert"; //return "Register.xhtml";
 		}
 	}
 	
@@ -114,14 +114,14 @@ public class User implements Serializable {
 		else{
 			//Überprüfung Passwort
 			if(!manager.getPassword(this.name).equals(this.password)){
-				setError("Das eingegebene Passwort stimmt nicht überein.");
+				setError("Das eingegebene Passwort stimmt nicht �berein.");
 			}
 			else
 				//Hauptseite, die nach login kommt aufrufen
-				return "MainPage.xhtml";
+				return "ok"; //return "MainPage.xhtml";
 		}
 		
-		return "";
+		return "verweigert";
 	}
 	
 	

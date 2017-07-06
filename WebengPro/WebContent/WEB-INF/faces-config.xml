@@ -20,8 +20,17 @@
 		<from-view-id>/Login.xhtml</from-view-id>
 		<navigation-case>
 		<from-action>#{user.checkLogin(name)}</from-action>
-		<from-outcome>MainPage.xhtml</from-outcome>
+		<from-outcome>ok</from-outcome>
 		<to-view-id>/MainPage.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/Login.xhtml</from-view-id>
+		<navigation-case>
+		<from-action>#{user.checkLogin(name)}</from-action>
+		<from-outcome>verweigert</from-outcome>
+		<to-view-id>/Login.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	
@@ -29,8 +38,17 @@
 		<from-view-id>/Register.xhtml</from-view-id>
 		<navigation-case>
 		<from-action>#{user.add}</from-action>
-		<from-outcome>Login.xhtml</from-outcome>
+		<from-outcome>ok</from-outcome>
 		<to-view-id>/Login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/Register.xhtml</from-view-id>
+		<navigation-case>
+		<from-action>#{user.add}</from-action>
+		<from-outcome>verweigert</from-outcome>
+		<to-view-id>/Register.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	
