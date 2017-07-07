@@ -60,15 +60,13 @@ public class PostManagerBean {
 	}
 	
 	// AJAX Listener
-	private void searchListener (AjaxBehaviorEvent e){
-		System.out.println("searchListener wurde aufgerufen durch Evenet: "+e);
-		//PostManager manager= new PostManager();
-		//setAllPost(manager.searchPosts(this.searchValue));
+	public void searchListener (AjaxBehaviorEvent e){
+		System.out.println("searchListener wurde aufgerufen durch Evenet.");
+		System.out.println("Wort nachdem gesucht wird: "+this.searchValue);
+		PostManager manager= new PostManager();
+		setAllPost(manager.searchPosts(this.searchValue));
 	}
 
-	// Post Suche
-	private void searchPosts(){
-		System.out.println("Suche Post");
-	}
+	
 	
 }

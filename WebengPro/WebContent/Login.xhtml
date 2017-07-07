@@ -14,24 +14,16 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 <body>
 
 
-	<ui:composition template="/Template.xhtml">
-		<ui:define name="header"></ui:define>
+	<ui:composition template="navigation.xhtml">
+	
+		
 		<ui:define name="content">
-			<div class="container ">
 				<div class="row" id="messagess">
-					<div class="col-lg-offset-4 col-lg-4">
-						<h:outputText class="alert alert-success" role="alert" value="#{user.success}" rendered="#{! empty user.successes}"></h:outputText>
-					</div>
 					<div class="col-lg-offset-4 col-lg-4">
 						<h:outputText class="alert alert-warning" role="alert" value="#{user.errors}" rendered='#{! empty user.errors}' ></h:outputText>			
 					</div>			
 				</div>
-				<div class="row">
-					<div class="col-lg-offset-4 col-lg-4">
-						<h:outputText class="alert alert-success" role="alert" value="#{user.errors}" rendered="{user.errors!=null}"></h:outputText>
-					</div>
-				</div>
-				<div class="jumbotron">
+				<div class="jumbotron container">
 					<div class="row">
 						<div class="col-lg-offset-4 col-lg-4">
 							<h1> Login</h1>
@@ -47,8 +39,6 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 						</div>
 					</div>
 				</div>
-
-			</div>
 		</ui:define>
 	</ui:composition>
 </body>

@@ -59,7 +59,7 @@ public class H2PostDAO implements PostDAO{
 				stmt.setString(2, searchValue);
 				// Statement ausführen
 				ResultSet rs= stmt.executeQuery();
-				
+				System.out.println("Stmt wurde ausgeführt!");
 				while(rs.next()){
 					PostTransferObject tempPost= new PostTransferObject();
 					// neuen temporären Post erstellen 

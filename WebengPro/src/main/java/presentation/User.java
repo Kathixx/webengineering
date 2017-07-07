@@ -5,9 +5,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import businesslogic.UserManager;
 import transfer.UserTransferObject;
@@ -24,7 +28,7 @@ public class User implements Serializable {
 	private String password;
 	private String password2;
 	private List <String> errors=new ArrayList <String>();
-	private List <String> successes=new ArrayList<String>();
+	
 	
 
 	// Manager
@@ -69,14 +73,6 @@ public class User implements Serializable {
 	}
 
 
-	public List <String> getSuccesses() {
-		return successes;
-	}
-
-
-	public void setSuccess(String success) {
-		this.successes.add(success);
-	}
 	
 	
 	public List <String> getErrors() {
@@ -102,7 +98,6 @@ public class User implements Serializable {
 				if(this.password.equals(this.password2)){
 					newUser.setPassword(this.password);
 					manager.addUserData(newUser);
-					setSuccess("Du wurdest erfolgreich registriert. Melde dich nun an um fortzufahren.");
 					return "ok";//return "Login.xhtml";
 				}  
 				else {
@@ -126,9 +121,7 @@ public class User implements Serializable {
 		System.out.println("Passwort in DB gefunden: " +manager.getPassword(this.name));
 		//Überprüfung ob User in DB existiert
 		if (!manager.getUserByName(this.name)){
-			System.out.println("Benutzername falsch: "+successes.size());
 			setError("Der Benutzername exisitiert nicht.");
-			System.out.println("Error Benutzername hinzugefügt: "+successes.size());
 		}
 		else{
 			//Überprüfung Passwort
@@ -148,5 +141,26 @@ public class User implements Serializable {
 		System.out.println("Benutzername bereits vergeben?: "+manager.findName(newName));
 		return manager.findName(newName);
 	}
+	
+	
+	public void passwordValidator(FacesContext ctx, UIComponent ui, Object value) throws ValidatorException{
+		if (value instanceof String){
+			String strValue=(String)value;
+			if(!containsSpecialSign(strValue))
+				throw new ValidatorException(new FacesMessage("Sonderzeichen: Das Passwort muss mindestens 1 Sonderzeichen enthalten"));
+		}
+		else throw new ValidatorException(new FacesMessage ("Passwort fehler"));
+	}
+	
+	public boolean containsSpecialSign(String password){
+		boolean isValidPassword=false;
+		for (int i=0; i<password.length(); i++){
+			if (!Character.isLetter(password.charAt(i))) isValidPassword=true;
+			System.out.println(password.charAt(i)+" "+isValidPassword);
+		}
+		return isValidPassword;
+	}
+	
 
+	
 }

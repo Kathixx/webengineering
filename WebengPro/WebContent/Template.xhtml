@@ -7,20 +7,14 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 		<body>
 			<!--h:outputStylesheet name="stylesheet.css" target="head"/-->
 			<div id="header">
-				<ui:insert name="header"></ui:insert>
-			</div>
-			<div id="navigation">
-				<ui:insert name="navigation">
-					<nav class="navbar navbar-inverse">
-						<div class="container">
-							<ul class="nav navbar-nav">
-								<li><a href="Login.xhtml"> Login</a></li>
-								<li><a href="#">Alle Posts</a></li>
-							</ul>
-						</div>
-					</nav>
+				<ui:insert name="header">
 				</ui:insert>
 			</div>
+			
+			<div id="navigation">
+				<ui:insert name="navigation"></ui:insert>
+			</div>
+			
 			<div id="content">
 				<ui:insert name="content"></ui:insert>
 			</div>

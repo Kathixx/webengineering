@@ -40,7 +40,7 @@ CREATE TABLE Comment(
 
 
 
-INSERT INTO User (name, password, sessionId) VALUES ('kathi', 'meinPasswort', null);
+INSERT INTO User (name, password, sessionId) VALUES ('ich', 'ich', null);
 
 INSERT INTO User (name, password, sessionId) VALUES ('vicky', 'meinPasswort', null);
 

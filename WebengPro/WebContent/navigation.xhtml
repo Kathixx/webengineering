@@ -1,0 +1,44 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:f="http://java.sun.com/jsf/core" 
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<head>
+</head>
+
+<h:body>
+	<ui:composition template="/Template.xhtml">
+	
+		
+		<ui:define name="navigation">
+			<nav class="navbar navbar-inverse">
+							<div class="container">
+								<ul class="nav navbar-nav">
+									<li><a href="Login.xhtml"> Login</a></li>
+									<li><a href="MainPage.xhtml">Alle Posts</a></li>
+								</ul>
+								<form class="navbar-form navbar-right">
+			 						<div class="form-group">
+			   				 			<h:inputText  id="search" class="form-control"  value="#{postList.searchValue}" rendered="false"> </h:inputText>
+			  						</div>
+	  								<h:commandButton id="btn-search" type="submit" class="btn" value="suchen" rendered="false" ></h:commandButton>
+								</form>
+							</div>
+			</nav>
+		</ui:define>
+		
+		<ui:define name="footer">
+			<p> ich bin der footer</p>
+		</ui:define>
+		
+		
+		</ui:composition>
+		
+	
+</h:body>
+</html>

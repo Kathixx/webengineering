@@ -12,8 +12,8 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 </head>
 
 <body>
-	<ui:composition template="/Template.xhtml">
-		<ui:define name="header"></ui:define>
+	<ui:composition template="navigation.xhtml">
+		
 			<ui:define name="content">
 				<div class="row" id="messages">
 					<div class="col-lg-offset-4 col-lg-4">
@@ -37,7 +37,7 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 								   
 									<br></br>
 									Wähle dein Passwort:
-									<h:inputText class="form-control"  id="password" value="#{user.password}" >
+									<h:inputText class="form-control"  id="password" value="#{user.password}" validator="#{user.passwordValidator}">
 										<f:validateLength minimum="3" maximum="20"/>
 										<f:validateRequired/>
 									</h:inputText>

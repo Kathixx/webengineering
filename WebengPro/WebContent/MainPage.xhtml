@@ -5,7 +5,8 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core" 
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:c="http://java.sun.com/jsp/jstl/core" >
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" >
 
 
 	<head>
@@ -14,32 +15,21 @@
 	</head>
 	
 	<body>
-	
-		<nav class="navbar navbar-inverse">
-			<div class="container">
-				<ul class="nav navbar-nav">
-					<li><a href="#">Alle Posts</a></li>
-					<li><a href="Login.xhtml"> Logout</a></li>
-				</ul>
-				<form class="navbar-form navbar-left">
-		 			<div class="form-group">
-		   				 <h:inputText  id="search" class="form-control"  value="#{postList.searchValue}">
-		   				 	<!-- <f:ajax event="keyup" render="searchResult" listener="#{postList.searchListener}"> </f:ajax> -->
-		   				 </h:inputText>
-		  			</div>
-  					<h:commandButton id="btn-search" type="submit" class="btn" value="suchen" action="#{postList.searchListener}">
-  						<!-- <f:ajax event="submit" render="searchResult"  listener='#{postList.searchListener}'/> --> 
-					</h:commandButton>
-					
-				</form>
-				
-			</div>
-		</nav>
+		<ui:composition template="navigation.xhtml">
 		
+		<ui:define name="content">
 		<div class="container">
 			<div class="row" >
 				<h1>Die aktuellen Posts im Überblick</h1>
-				<p><h:outputText id="searchResult">Es wurde gesucht</h:outputText></p>
+				<h:form>
+					<div class="form-group">
+						<h:inputText id="searchValue" value="#{postList.searchValue}"></h:inputText>
+						<h:commandButton type="submit" class="btn" value="Suchen" ></h:commandButton>
+						<f:ajax event="keyup" render="ergebnis" listener="#{postList.searchListener}"></f:ajax>
+					</div>
+				</h:form>
+				
+				<h:outputText id="ergebnis">Ich bin gesucht worden.</h:outputText>
 			</div>
 			
 			
@@ -52,7 +42,8 @@
 				</div>
 			</c:forEach>
 		</div>
-	
+		</ui:define>
+		</ui:composition>
 	
 	</body>
 
