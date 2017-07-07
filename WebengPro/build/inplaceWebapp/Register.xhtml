@@ -24,9 +24,9 @@ xmlns:h="http://java.sun.com/jsf/html">
 </nav>
 
 
-<div class="row">
+<div class="row" id="messages">
 			<div class="col-lg-offset-4 col-lg-4">
-				<h:outputText class="alert alert-warning" role="alert" value="#{user.errors}" ></h:outputText>
+				<h:outputText class="alert alert-warning" role="alert" value="#{user.errors}" rendered='#{! empty user.errors}' ></h:outputText>
 			</div>
 	</div>
 	
@@ -56,9 +56,9 @@ xmlns:h="http://java.sun.com/jsf/html">
 					</h:inputText>
 					<br></br>
 					Bitte wiederhole dein Passwort: 
-					<h:inputText class="form-control" id="password2" ></h:inputText>
+					<h:inputText class="form-control" id="password2" value='#{user.password2}'></h:inputText>
 					<h:commandButton class="btn" id="btn-register" value="Registrieren" action="#{user.add}"></h:commandButton>
-					<!--h:commandButton class="btn" id="btn-register" value="Cancel" action="Register.xhtml" immediate="true"/-->
+					<h:commandButton class="btn" action="cancel" value="Zurücksetzen" immediate="true"/>
 				</h:form>
 				
 			</div>
