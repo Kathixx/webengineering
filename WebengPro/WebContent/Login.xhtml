@@ -4,56 +4,52 @@
 <html 
 xmlns="http://www.w3.org/1999/xhtml"
 xmlns:f="http://java.sun.com/jsf/core" 
-xmlns:h="http://java.sun.com/jsf/html">
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets">
 
 
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> </link>
-<link rel="stylesheet" href="./css/stylesheet.css"></link>
 </head>
 
 <body>
 
-<nav class="navbar navbar-inverse">
-	<div class="container">
-		<ul class="nav navbar-nav">
-			<li><a href="Login.xhtml"> Login</a></li>
-			<li><a href="MainPage.xhtml">Alle Posts</a></li>
-		</ul>
-		
-	</div>
-</nav>
 
-<div class="row" id="messagess">
-			<div class="col-lg-offset-4 col-lg-4">
-				<h:outputText class="alert alert-success" role="alert" value="#{user.success}" rendered="#{! empty user.successes}"></h:outputText>
+	<ui:composition template="/Template.xhtml">
+		<ui:define name="header"></ui:define>
+		<ui:define name="content">
+			<div class="container ">
+				<div class="row" id="messagess">
+					<div class="col-lg-offset-4 col-lg-4">
+						<h:outputText class="alert alert-success" role="alert" value="#{user.success}" rendered="#{! empty user.successes}"></h:outputText>
+					</div>
+					<div class="col-lg-offset-4 col-lg-4">
+						<h:outputText class="alert alert-warning" role="alert" value="#{user.errors}" rendered='#{! empty user.errors}' ></h:outputText>			
+					</div>			
+				</div>
+				<div class="row">
+					<div class="col-lg-offset-4 col-lg-4">
+						<h:outputText class="alert alert-success" role="alert" value="#{user.errors}" rendered="{user.errors!=null}"></h:outputText>
+					</div>
+				</div>
+				<div class="jumbotron">
+					<div class="row">
+						<div class="col-lg-offset-4 col-lg-4">
+							<h1> Login</h1>
+							<p>Herzlich Willkommen auf Postit!<br> Bitte melde dich an um fortzufahren.</br></p>
+							<h:form id="login-form">
+								Benutzername:<h:inputText class="form-control" id="username" value="#{user.name}"> </h:inputText>			 
+								<br></br>
+								Passwort: <h:inputText class="form-control" id="password"  value="#{user.password}"></h:inputText>
+								<br></br>
+								<h:commandButton class="btn" id="btn-login" value="Einloggen" action="#{user.checkLogin(name)}"></h:commandButton>
+							</h:form>
+							<small> Noch nicht angemeldet? Dann <a href="Register.xhtml">registrier</a> dich jetzt!</small>
+						</div>
+					</div>
+				</div>
+
 			</div>
-			<div class="col-lg-offset-4 col-lg-4">
-				<h:outputText class="alert alert-warning" role="alert" value="#{user.errors}" rendered='#{! empty user.errors}' ></h:outputText>			
-			</div>
-			
-</div>
-	
-<div class="container ">
-
-	<div class="jumbotron">
-		<div class="row">
-			<div class="col-lg-offset-4 col-lg-4">
-				<h1> Login</h1>
-				<p>Herzlich Willkommen auf Postit!<br> Bitte melde dich an um fortzufahren.</br></p>
-				<h:form id="login-form">
-					Benutzername:<h:inputText class="form-control" id="username" value="#{user.name}"> </h:inputText>			 
-					<br></br>
-					Passwort: <h:inputText class="form-control" id="password"  value="#{user.password}"></h:inputText>
-					<br></br>
-					<h:commandButton class="btn" id="btn-login" value="Einloggen" action="#{user.checkLogin(name)}"></h:commandButton>
-				</h:form>
-				<small> Noch nicht angemeldet? Dann <a href="Register.xhtml">registrier</a> dich jetzt!</small>
-			</div>
-		</div>
-	</div>
-
-</div>
-
+		</ui:define>
+	</ui:composition>
 </body>
 </html>
