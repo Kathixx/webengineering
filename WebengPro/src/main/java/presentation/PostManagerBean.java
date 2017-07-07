@@ -18,6 +18,7 @@ public class PostManagerBean {
 	List <PostTransferObject> allPost= new ArrayList <PostTransferObject> ();
 	String searchValue;
 	
+	
 	public PostManagerBean(){
 		//System.out.println("PostManagerBean wurde erstellt");
 	};
@@ -45,6 +46,7 @@ public class PostManagerBean {
 	public void setSearchValue(String searchValue) {
 		this.searchValue = searchValue;
 	}
+	
 
 
 
@@ -60,8 +62,8 @@ public class PostManagerBean {
 	// AJAX Listener
 	private void searchListener (AjaxBehaviorEvent e){
 		System.out.println("searchListener wurde aufgerufen durch Evenet: "+e);
-		PostManager manager= new PostManager();
-		setAllPost(manager.searchPosts(this.searchValue));
+		//PostManager manager= new PostManager();
+		//setAllPost(manager.searchPosts(this.searchValue));
 	}
 
 	// Post Suche
