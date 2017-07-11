@@ -18,6 +18,7 @@ public class H2PostDAO implements PostDAO{
 		// SQL-Befehle als String vorbereiten
 		String stmtSelectPost="SELECT title, message FROM Post";
 		String stmtSearchPost="Select title, message FROM Post WHERE message CONTAINS ? OR title CONTAINS ?";
+		String stmtInsertPost="INSERT INTO Post (title, message, timestamp, user) VALUES (?,?,?,?)";
 		
 		// Methoden
 		@Override
@@ -50,7 +51,7 @@ public class H2PostDAO implements PostDAO{
 			return postList;
 		}
 
-		@Override
+		
 		public List<PostTransferObject> searchPosts(String searchValue) {
 			List <PostTransferObject> postList=new ArrayList<PostTransferObject>();
 			try{
@@ -83,6 +84,27 @@ public class H2PostDAO implements PostDAO{
 			}
 			return postList;
 		}
+		
+		
+		@Override
+		public boolean addPost(PostTransferObject newPost) {
+				try {
+					
+					PreparedStatement stmt=con.prepareStatement(stmtInsertPost);
+					stmt.setString(1, newPost.getTitle());
+					stmt.setString(2, newPost.getMessage());
+					stmt.setTimestamp(3, null, null);
+					stmt.setInt(4, 2);
+					stmt.execute();
+					return true;
+				}
+				catch (SQLException e){
+					e.printStackTrace();
+					return false;
+				}
+			
+		}
+
 
 		
 		

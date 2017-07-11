@@ -10,6 +10,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 
 import businesslogic.PostManager;
 import transfer.PostTransferObject;
+import transfer.UserTransferObject;
 
 @ManagedBean (name="postList")
 @RequestScoped
@@ -17,6 +18,9 @@ public class PostManagerBean {
 
 	List <PostTransferObject> allPost= new ArrayList <PostTransferObject> ();
 	String searchValue;
+	
+	String title; 
+	String message; 
 	
 	
 	public PostManagerBean(){
@@ -45,6 +49,35 @@ public class PostManagerBean {
 
 	public void setSearchValue(String searchValue) {
 		this.searchValue = searchValue;
+	}
+	
+	public String getTitle (){
+		return title;
+	}
+	
+	public void setTitle(String title){
+		this.title=title;
+	}
+	
+	public String getMessage(){
+		return message;
+	}
+	
+	public void setMessage(String message){
+		this.message=message;
+	}
+	
+	//Methoden
+	public String addPost (){
+			PostTransferObject newPost= new PostTransferObject();
+			newPost.setTitle(this.title);
+			newPost.setMessage(this.message);
+			
+			PostManager manager = new PostManager();
+			manager.addPost(newPost);
+			
+			return "hinzugefügt";
+
 	}
 	
 

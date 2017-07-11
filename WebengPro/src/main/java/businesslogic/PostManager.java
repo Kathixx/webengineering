@@ -27,4 +27,8 @@ PostDAO postDAO;
 	public List <PostTransferObject> searchPosts (String searchValue){
 		return postDAO.searchPosts(searchValue);
 	}
+	
+	public boolean addPost (PostTransferObject newPost){
+		return postDAO.addPost(newPost);
+	}
 }
