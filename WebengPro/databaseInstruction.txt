@@ -6,6 +6,10 @@
 // Identity ist ein vorgegebener Datentyp der H2 Database und ist ein BIGIN
 // die Identity ist autoIncrementell und wird nur einmal verwendet
 
+DROP TABLE User;
+DROP TABLE Post;
+DROP TABLE Comment;
+
 CREATE TABLE User (
 	id IDENTITY,
 	name VARCHAR(20) NOT NULL,
@@ -19,7 +23,6 @@ CREATE TABLE Post (
 	id IDENTITY,
 	title VARCHAR(255) NOT NULL,
 	message VARCHAR(255) NOT NULL,
-	image BLOB,
 	timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	user BIGINT NOT NULL,
 	PRIMARY KEY (id),
