@@ -20,6 +20,7 @@ public class H2PostDAO implements PostDAO{
 		String stmtSearchPosts="Select title, message FROM Post WHERE INSTR (message, ?) OR INSTR (title,?)";
 		String stmtSearchPostTitle="Select title FROM Post WHERE INSTR (message, ?) OR INSTR (title,?)";
 		String stmtInsertPost="INSERT INTO Post (title, message, timestamp, user) VALUES (?,?,?,?)";
+
 		
 		// Methoden
 		@Override
@@ -118,8 +119,7 @@ public class H2PostDAO implements PostDAO{
 					PreparedStatement stmt=con.prepareStatement(stmtInsertPost);
 					stmt.setString(1, newPost.getTitle());
 					stmt.setString(2, newPost.getMessage());
-					stmt.setTimestamp(3, null, null);
-					stmt.setInt(4, 2);
+					stmt.setInt(3, 2);
 					stmt.execute();
 					return true;
 				}

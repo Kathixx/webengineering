@@ -16,7 +16,7 @@ public class H2UserDAO implements UserDAO {
 	
 	// SQL-Befehle als String vorbereiten
 	
-	String stmtInsert="INSERT INTO User ( name, password, sessionid) VALUES (?,?,?)";
+	String stmtInsert="INSERT INTO User ( name, password) VALUES (?,?)";
 	String stmtGetUserByName="SELECT * FROM User WHERE name=?";
 	String stmtFindName="SELECT * FROM User WHERE name=?";
 	String stmtGetPassword="SELECT password FROM User WHERE name=?";
@@ -30,7 +30,6 @@ public class H2UserDAO implements UserDAO {
 			PreparedStatement stmt=con.prepareStatement(stmtInsert);
 			stmt.setString(1, newUser.getName());
 			stmt.setString(2, newUser.getPassword());
-			stmt.setString(3, newUser.getSessionId());
 			stmt.execute();
 			return true;
 		}
