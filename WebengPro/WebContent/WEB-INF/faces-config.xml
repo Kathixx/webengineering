@@ -16,56 +16,54 @@
         </resource-bundle>
     </application>
     
-    <navigation-rule>
+
+	 <navigation-rule>
 		<from-view-id>/Login.xhtml</from-view-id>
 		<navigation-case>
-		<from-action>#{user.checkLogin(name)}</from-action>
+		<from-action>#{user.checkLogin}</from-action>
 		<from-outcome>ok</from-outcome>
 		<to-view-id>/MainPage.xhtml</to-view-id>
+		<redirect/>
 		</navigation-case>
 	</navigation-rule>
 	
 	<navigation-rule>
 		<from-view-id>/Login.xhtml</from-view-id>
 		<navigation-case>
-		<from-action>#{user.checkLogin(name)}</from-action>
+		<from-action>#{user.checkLogin}</from-action>
 		<from-outcome>verweigert</from-outcome>
 		<to-view-id>/Login.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	
+	<!-- neue Navigationsregeln von mir -->
 	<navigation-rule>
-		<from-view-id>/Register.xhtml</from-view-id>
+		<from-view-id>*</from-view-id>
 		<navigation-case>
-		<from-action>#{user.add}</from-action>
+		<from-action>#{navigation.goToCreatePost}</from-action>
+		<from-outcome>ok</from-outcome>
+		<to-view-id>/CreatePost.xhtml</to-view-id>
+		<redirect></redirect>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+		<from-action>#{navigation.goToMainPage}</from-action>
+		<from-outcome>ok</from-outcome>
+		<to-view-id>/MainPage.xhtml</to-view-id>
+		<redirect></redirect>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+		<from-action>#{navigation.goToLogin}</from-action>
 		<from-outcome>ok</from-outcome>
 		<to-view-id>/Login.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	
-	<navigation-rule>
-		<from-view-id>/Register.xhtml</from-view-id>
-		<navigation-case>
-		<from-action>#{user.add}</from-action>
-		<from-outcome>verweigert</from-outcome>
-		<to-view-id>/Register.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	
-	<navigation-rule>
-		<from-view-id>/Register.xhtml</from-view-id>
-		<navigation-case>
-		<from-outcome>cancel</from-outcome>
-		<to-view-id>/Register.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	
-	<navigation-rule>
-		<from-view-id>/CreatePost.xhtml</from-view-id>
-		<navigation-case>
-		<from-action>#{postList.addPost}</from-action>
-		<from-outcome>hinzugefügt</from-outcome>
-		<to-view-id>/MainPage.xhtml</to-view-id>
+		<redirect></redirect>
 		</navigation-case>
 	</navigation-rule>
 

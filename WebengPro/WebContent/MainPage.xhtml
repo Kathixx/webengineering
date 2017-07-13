@@ -22,25 +22,23 @@
 			<div class="row" >
 				<h1>Die aktuellen Posts im Überblick</h1>
 				<h:form>
-					<div class="form-group">
-						<h:inputText id="searchValue" value="#{postList.searchValue}"></h:inputText>
-						<h:commandButton type="submit" class="btn" value="Suchen" ></h:commandButton>
-						<f:ajax event="keyup" render="ergebnis" listener="#{postList.searchListener}"></f:ajax>
-					</div>
+						<p><h:outputText>Hier kannst du nach Posts suchen</h:outputText></p>
+						<h:inputText id="searchValue" value="#{postList.searchValue}">
+						<f:ajax event="keyup" render="ergebnis" listener="#{postList.searchListenerPost}"></f:ajax>
+						 </h:inputText>
 				</h:form>
-				
-				<h:outputText id="ergebnis">Ich bin gesucht worden.</h:outputText>
 			</div>
 			
-			
-			<c:forEach items="#{postList.allPost}" var="post">
-				<div class="row">
-					<div class="jumbotron">
-						<h2><h:outputText value="#{post.title}" ></h:outputText></h2>
-						<p><h:outputText value="#{post.message}"></h:outputText></p>	
+			<div class="row">
+			<h:dataTable value="#{postList.allPost}" var="post" id="ergebnis" rowClasses="order-table-row">
+				<h:column class="col-12">
+					<div class="jumbotron" >
+					<h2><h:outputText value="#{post.title}"/></h2>
+					<p><h:outputText value="#{post.message}"/></p>
 					</div>
-				</div>
-			</c:forEach>
+				</h:column>
+			</h:dataTable>
+			</div>		
 		</div>
 		</ui:define>
 		</ui:composition>

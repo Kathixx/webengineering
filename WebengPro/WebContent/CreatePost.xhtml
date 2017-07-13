@@ -20,30 +20,32 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 		<ui:define name="content">
 				<div class="row" id="messagess">
 					<div class="col-lg-offset-4 col-lg-4">
-						<h:outputText class="alert alert-warning" role="alert" ></h:outputText>			
+						<h:outputText class="alert alert-warning" role="alert" value="#{user.errors}" rendered='#{! empty user.errors}'></h:outputText>			
 					</div>			
 				</div>
+				<div class="container">
 				<h:messages id="createPostErrorMessages" class="alert alert-warning"></h:messages>
-				<div class="jumbotron container">
+				<div class="jumbotron">
 					<div class="row">
 						<div class="col-lg-offset-4 col-lg-4">
-							<h1>Neuen Post verfassen</h1>
+							<h2>Neuen Post verfassen</h2>
 							<p>Verfasse hier deinen neuen Post!</p>
 							<h:form id="create-post">
-								Titel:<h:inputText class="form-control" id="posttitle" value="#{postList.title}">
-										<f:validateLength minimum="3" maximum="15"/>
-										<f:validateRequired/>
-									 </h:inputText>			 
+								Titel:<h:inputText class="form-control" id="posttitle" value="#{postList.title}" >
+										<f:validateLength minimum="3" maximum="50"/>
+										 <f:validateRequired/> 
+									 </h:inputText>		 
 								<br></br>
-								Nachricht: <h:inputText class="form-control" id="postmessage"  value="#{postList.message}">
-												<f:validateLength minimum="3" maximum="40"/>
+								Nachricht: <h:inputTextarea class="form-control" id="postmessage"  value="#{postList.message}" >
+												<f:validateLength minimum="3" maximum="200"/>
 												<f:validateRequired/>
-										</h:inputText>
+										</h:inputTextarea>
 								<br></br>
 								<h:commandButton class="btn" id="btn-create" value="Post verfassen" action="#{postList.addPost}"></h:commandButton>
 							</h:form>
 						</div>
 					</div>
+				</div>
 				</div>
 		</ui:define>
 	</ui:composition>

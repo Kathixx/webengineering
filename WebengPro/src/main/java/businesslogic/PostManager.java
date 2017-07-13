@@ -5,7 +5,7 @@ import java.util.List;
 import data.DAOFactory;
 import data.DAOFactory.Backend;
 import data.PostDAO;
-import presentation.Post;
+
 import transfer.PostTransferObject;
 
 public class PostManager {
@@ -26,6 +26,10 @@ PostDAO postDAO;
 	
 	public List <PostTransferObject> searchPosts (String searchValue){
 		return postDAO.searchPosts(searchValue);
+	}
+	
+	public List <String> searchPostTitle(String searchValue){
+		return postDAO.searchPostTitle(searchValue);
 	}
 	
 	public boolean addPost (PostTransferObject newPost){

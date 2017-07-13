@@ -10,7 +10,6 @@ CREATE TABLE User (
 	id IDENTITY,
 	name VARCHAR(20) NOT NULL,
 	password VARCHAR(25) NOT NULL,
-	sessionId VARCHAR(255),
 	PRIMARY KEY (id)
 );
 
@@ -19,7 +18,6 @@ CREATE TABLE Post (
 	id IDENTITY,
 	title VARCHAR(255) NOT NULL,
 	message VARCHAR(255) NOT NULL,
-	image BLOB,
 	timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	user BIGINT NOT NULL,
 	PRIMARY KEY (id),
@@ -40,16 +38,16 @@ CREATE TABLE Comment(
 
 
 
-INSERT INTO User (name, password, sessionId) VALUES ('ich', 'ich', null);
+INSERT INTO User (name, password) VALUES ('ich', 'ich');
 
-INSERT INTO User (name, password, sessionId) VALUES ('vicky', 'meinPasswort', null);
+INSERT INTO User (name, password) VALUES ('vicky', 'meinPasswort');
 
-Insert INTO Post (title, message, image, user) VALUES ('Mein erster Post', 'Herzlich Willkommen auf unserem Blog',null,1);
+Insert INTO Post (title, message, user) VALUES ('Mein erster Post', 'Herzlich Willkommen auf unserem Blog',1);
 
-Insert INTO Post (title, message, image, user) VALUES ('Mein zweiter Post', 'Dieser Blog ist total nützlich für unnützes Wissen zu verbreiten. Beispielsweise waren bisher nur Männer, und zwar genau 12, auf dem Mond. Emanzipiert die Mondbesiedlung!',null,1);
+Insert INTO Post (title, message, user) VALUES ('Mein zweiter Post', 'Dieser Blog ist total nützlich für unnützes Wissen zu verbreiten. Beispielsweise waren bisher nur Männer, und zwar genau 12, auf dem Mond. Emanzipiert die Mondbesiedlung!',1);
 
-Insert INTO Post (title, message, image, user) VALUES ('Teil Zwei Unnützes Wissen', 'Wusstest du, dass wennd ie gesamte Weltbevölkerung genauso dicht besiedelt leben würde wie in New York City, passte sie auf die Fläche des US-Staates Texas. KRAAAASSS!!',null,1);
+Insert INTO Post (title, message, user) VALUES ('Teil Zwei Unnützes Wissen', 'Wusstest du, dass wennd ie gesamte Weltbevölkerung genauso dicht besiedelt leben würde wie in New York City, passte sie auf die Fläche des US-Staates Texas. KRAAAASSS!!',1);
 
 
-Insert INTO Comment (message, user, post) VALUES ('LIKE', 2, 1);
+
 

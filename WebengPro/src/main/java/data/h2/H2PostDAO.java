@@ -17,7 +17,8 @@ public class H2PostDAO implements PostDAO{
 		
 		// SQL-Befehle als String vorbereiten
 		String stmtSelectPost="SELECT title, message FROM Post";
-		String stmtSearchPost="Select title, message FROM Post WHERE message CONTAINS ? OR title CONTAINS ?";
+		String stmtSearchPosts="Select title, message FROM Post WHERE INSTR (message, ?) OR INSTR (title,?)";
+		String stmtSearchPostTitle="Select title FROM Post WHERE INSTR (message, ?) OR INSTR (title,?)";
 		String stmtInsertPost="INSERT INTO Post (title, message, timestamp, user) VALUES (?,?,?,?)";
 		
 		// Methoden
@@ -55,7 +56,7 @@ public class H2PostDAO implements PostDAO{
 		public List<PostTransferObject> searchPosts(String searchValue) {
 			List <PostTransferObject> postList=new ArrayList<PostTransferObject>();
 			try{
-				PreparedStatement stmt=con.prepareStatement(stmtSearchPost);
+				PreparedStatement stmt=con.prepareStatement(stmtSearchPosts);
 				stmt.setString(1, searchValue);
 				stmt.setString(2, searchValue);
 				// Statement ausführen
@@ -64,7 +65,7 @@ public class H2PostDAO implements PostDAO{
 				while(rs.next()){
 					PostTransferObject tempPost= new PostTransferObject();
 					// neuen temporären Post erstellen 
-					System.out.println("Suche nach: "+searchValue+"war erfolgreich.");
+					System.out.println("Suche nach: "+searchValue+" war erfolgreich.");
 					// temporären Post mit Daten aus der Tabelle füllen
 					tempPost.setTitle(rs.getNString("title"));
 					tempPost.setMessage(rs.getNString("message"));
@@ -83,6 +84,30 @@ public class H2PostDAO implements PostDAO{
 				postList.add(tempPost);
 			}
 			return postList;
+		}
+		
+		public List<String> searchPostTitle(String searchValue) {
+			List <String> titleList=new ArrayList<>();
+			try{
+				PreparedStatement stmt=con.prepareStatement(stmtSearchPostTitle);
+				stmt.setString(1, searchValue);
+				stmt.setString(2, searchValue);
+				// Statement ausführen
+				ResultSet rs= stmt.executeQuery();
+				System.out.println("Stmt wurde ausgeführt!");
+				while(rs.next()){
+					//Title zur Liste hinzufügen
+					titleList.add(rs.getNString("title"));		
+				}
+				
+				
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+				System.out.println("DB fehler bei der Suche.");
+				titleList.add("ERROR");
+			}
+			return titleList;
 		}
 		
 		
@@ -104,6 +129,9 @@ public class H2PostDAO implements PostDAO{
 				}
 			
 		}
+
+
+	
 
 
 		

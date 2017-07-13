@@ -12,5 +12,7 @@ public interface PostDAO {
 	
 	public List <PostTransferObject> searchPosts(String searchValue);
 	
+	public List <String> searchPostTitle(String searchValue);
+	
 	public boolean addPost (PostTransferObject newPost);
 }

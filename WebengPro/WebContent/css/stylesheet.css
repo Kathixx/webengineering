@@ -1,5 +1,9 @@
+body {
+	background-image:url("../img/seigaiha.png");
+}
 .jumbotron {
 	text-align: center;
+	background-color:rgba(255,255,255,0.6);
 }
 
 #login-form {
@@ -15,4 +19,42 @@
 
 .jumbotron {
 	margin-top: 50px;
+}
+
+
+.order-table-row{
+	width:100%;
+	border: 2px, solid, coral;
+}
+
+#footer{
+	background-color:black;
+	color:white;
+	height:30px;
+	width:100%;
+	text-align:center;
+	position:fixed;
+	bottom:0;
+	padding-top:5px;
+	
+}
+
+textarea.form-control{
+	height: 200px;
+}
+
+nav a{
+	color:white;
+	font-size:larger;
+	padding-right: 20px;
+	
+}
+
+nav a:focus, nav a:hover {
+	color:coral;
+	text-decoration:none;
+}
+
+.navbar-inverse{
+	padding-top:10px;
 }

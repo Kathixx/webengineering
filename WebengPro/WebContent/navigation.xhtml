@@ -19,10 +19,12 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 			<nav class="navbar navbar-inverse">
 							<div class="container">
 								<ul class="nav navbar-nav">
-									<li><a href="Login.xhtml" rendered="#{navigation.loginVisible}"> Login</a></li>
-									<li><a href="MainPage.xhtml">Alle Posts</a></li>
-									<li><a href="CreatePost.xhtml">Neuer Post</a></li>
-									<li><a href="Login.xhtml" rendered="#{navigation.logoutVisible}"> Logout</a></li>
+									<h:form>
+									<h:commandLink class="navLink" value="Login" action="#{navigation.goToLogin}" rendered="#{!navigation.loggedIn}"></h:commandLink>
+									<h:commandLink class="navLink" value="Alle Posts" action="#{navigation.goToMainPage}" rendered="#{navigation.loggedIn}"></h:commandLink>
+									<h:commandLink class="navLink" value="Neuer Post anlegen" action="#{navigation.goToCreatePost}" rendered="#{navigation.loggedIn}"></h:commandLink> 
+									<h:commandLink class="navLink" value="Logout"  action="#{navigation.goToLogin}" rendered="#{navigation.loggedIn}"></h:commandLink> 
+									</h:form>
 								</ul>
 								<form class="navbar-form navbar-right">
 			 						<div class="form-group">
@@ -30,12 +32,20 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 			  						</div>
 	  								<h:commandButton id="btn-search" type="submit" class="btn" value="suchen" rendered="false" ></h:commandButton>
 								</form>
+								
 							</div>
 			</nav>
 		</ui:define>
 		
 		<ui:define name="footer">
-			<p> ich bin der footer</p>
+			<div class="container" id="footer">
+				
+					<div class="row">
+						<small>Hochschule Düsseldorf | Webengineering 2017</small>
+					</div>
+				
+				
+			</div>
 		</ui:define>
 		
 		

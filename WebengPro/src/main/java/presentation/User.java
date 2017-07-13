@@ -115,10 +115,12 @@ public class User implements Serializable {
 	
 	// Methode die checkt ob Login erfolgreich war
 	// leitet an hauptseite weiter
-	public String checkLogin(String name){
+	public String checkLogin(){
 		System.out.println("aktueller UserName: "+this.name);
 		System.out.println("User ind DB gefunden: "+manager.getUserByName(this.name));
-		System.out.println("Passwort in DB gefunden: " +manager.getPassword(this.name));
+		System.out.println("zugehöriges Passwort in DB: " +manager.getPassword(this.name));
+		System.out.println("aktuelles Passwort: "+this.password);
+		
 		//Überprüfung ob User in DB existiert
 		if (!manager.getUserByName(this.name)){
 			setError("Der Benutzername exisitiert nicht.");
@@ -128,9 +130,12 @@ public class User implements Serializable {
 			if(!manager.getPassword(this.name).equals(this.password)){
 				setError("Fehler bei der Passworteingabe: Das eingegebene Passwort stimmt nicht überein.");
 			}
-			else
+			else{
+				System.out.println("PasswordValidation true");
+				NavigationBean.changePermission();
 				//Hauptseite, die nach login kommt aufrufen
 				return "ok"; //return "MainPage.xhtml";
+			}
 		}
 		
 		return "verweigert";
