@@ -15,4 +15,6 @@ public interface PostDAO {
 	public List <String> searchPostTitle(String searchValue);
 	
 	public boolean addPost (PostTransferObject newPost);
+
+	public String findUserName(int id);
 }

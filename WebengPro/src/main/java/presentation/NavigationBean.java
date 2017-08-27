@@ -51,4 +51,8 @@ public class NavigationBean {
 		return "ok";
 	}
 	
+	public String goToRegister() throws IOException{
+		return "ok";
+	}
+	
 }

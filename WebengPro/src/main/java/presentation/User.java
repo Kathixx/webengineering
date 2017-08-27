@@ -9,6 +9,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
@@ -27,6 +28,7 @@ public class User implements Serializable {
 	private String name;
 	private String password;
 	private String password2;
+	private String passwordIsValid="true";
 	private List <String> errors=new ArrayList <String>();
 	
 	
@@ -92,6 +94,7 @@ public class User implements Serializable {
 	//TODO �berpr�fung ob beide Passw�rter gleich sind, sonst fehlermeldung auswerfen
 	// TODO best�tigung dass Registrierung erfolgreich war und man sich jetzt einloggen kann
 	public String add (){
+		System.out.println("userAdd wurde aufgerufen");
 		if (!nameAlreadyExists(this.name)){
 			UserTransferObject newUser= new UserTransferObject();
 			newUser.setName(this.name);
@@ -148,13 +151,41 @@ public class User implements Serializable {
 	}
 	
 	
+	
+	
+	public String getPasswordIsValid() {
+		System.out.println("hallo"+this.passwordIsValid);
+		return this.passwordIsValid;
+	}
+
+
+	public void setPasswordIsValid(String passwordIsValid) {
+		this.passwordIsValid = passwordIsValid;
+		
+	}
+
+
 	public void passwordValidator(FacesContext ctx, UIComponent ui, Object value) throws ValidatorException{
+		
+		System.out.println(value);
 		if (value instanceof String){
 			String strValue=(String)value;
-			if(!containsSpecialSign(strValue))
+			if(!containsSpecialSign(strValue)){
+				setPasswordIsValid("true");
+				System.out.println("kein Sonderzeichen gefunden: "+passwordIsValid);
 				throw new ValidatorException(new FacesMessage("Sonderzeichen: Das Passwort muss mindestens 1 Sonderzeichen enthalten"));
+			}
+			else {
+				
+				setPasswordIsValid("false");
+				System.out.println("Password richtig. isPasswordValid: "+this.passwordIsValid);
+			}
 		}
-		else throw new ValidatorException(new FacesMessage ("Passwort fehler"));
+		else {
+			setPasswordIsValid("true");
+			System.out.println("Passwort fehler");
+			throw new ValidatorException(new FacesMessage ("Passwort fehler"));
+		}
 	}
 	
 	public boolean containsSpecialSign(String password){

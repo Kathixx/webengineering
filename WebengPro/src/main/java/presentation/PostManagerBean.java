@@ -1,5 +1,6 @@
 package presentation;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,33 +18,34 @@ import transfer.UserTransferObject;
 public class PostManagerBean {
 
 	List <PostTransferObject> allPost= new ArrayList <PostTransferObject> ();
-	List <String> titleList=new ArrayList <>();
+//	List <String> titleList=new ArrayList <>();
 	String searchValue;
 	String title; 
 	String message; 
-	boolean searchOn=false;
+	Timestamp timestamp;
+//	boolean searchOn=false;
 	
 	
-	public boolean isSearchOn() {
-		return searchOn;
-	}
-
-
-
-	public void setSearchOn(boolean searchOn) {
-		this.searchOn = searchOn;
-	}
-	
-	
-	public List<String> getTitleList() {
-		return titleList;
-	}
-
-
-
-	public void setTitleList(List<String> titleList) {
-		this.titleList = titleList;
-	}
+//	public boolean isSearchOn() {
+//		return searchOn;
+//	}
+//
+//
+//
+//	public void setSearchOn(boolean searchOn) {
+//		this.searchOn = searchOn;
+//	}
+//	
+//	
+//	public List<String> getTitleList() {
+//		return titleList;
+//	}
+//
+//
+//
+//	public void setTitleList(List<String> titleList) {
+//		this.titleList = titleList;
+//	}
 
 
 
@@ -91,6 +93,20 @@ public class PostManagerBean {
 		this.message=message;
 	}
 	
+	
+	
+	public Timestamp getTimestamp() {
+		return timestamp;
+	}
+
+
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
+	}
+
+
+
 	//Methoden
 	public String addPost (){
 			PostTransferObject newPost= new PostTransferObject();
@@ -118,7 +134,7 @@ public class PostManagerBean {
 	
 	// AJAX Listener
 	public void searchListenerPost (AjaxBehaviorEvent e){
-		searchOn=true;
+//		searchOn=true;
 		System.out.println("searchListener wurde aufgerufen durch Evenet.");
 		System.out.println("Wort nachdem gesucht wird: "+this.searchValue);
 		PostManager manager= new PostManager();
@@ -126,12 +142,12 @@ public class PostManagerBean {
 		System.out.println("Länge der aktuellen List: " + allPost.size());
 	}
 	
-	public void searchListener(AjaxBehaviorEvent e){
-		System.out.println("searchListener wurde aufgerufen, es wird nach folgendem Wort gesucht: "+this.searchValue);
-		PostManager manager=new PostManager();
-		this.setTitleList(manager.searchPostTitle(this.searchValue));
-		System.out.println("Länge der gefundenen TitleListe: "+titleList.size());
-	}
+//	public void searchListener(AjaxBehaviorEvent e){
+//		System.out.println("searchListener wurde aufgerufen, es wird nach folgendem Wort gesucht: "+this.searchValue);
+//		PostManager manager=new PostManager();
+//		this.setTitleList(manager.searchPostTitle(this.searchValue));
+//		System.out.println("Länge der gefundenen TitleListe: "+titleList.size());
+//	}
 
 	
 	

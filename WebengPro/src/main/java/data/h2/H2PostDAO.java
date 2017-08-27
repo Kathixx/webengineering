@@ -1,5 +1,6 @@
 package data.h2;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,10 +17,11 @@ public class H2PostDAO implements PostDAO{
 		Connection con=H2DAOFactory.getConnection();
 		
 		// SQL-Befehle als String vorbereiten
-		String stmtSelectPost="SELECT title, message FROM Post";
-		String stmtSearchPosts="Select title, message FROM Post WHERE INSTR (message, ?) OR INSTR (title,?)";
+		String stmtSelectPost="SELECT Post.title, Post.message, Post.timestamp, User.name From Post, User WHERE  User.id=Post.user";
+		String stmtSearchPosts="SELECT Post.title, Post.message, Post.timestamp, User.name From Post, User WHERE  User.id=Post.user AND (INSTR(title, ?) OR INSTR (message, ?)) " ;
+		String stmtSelectUser="SELECT name FROM User WHERE id=?";
 		String stmtSearchPostTitle="Select title FROM Post WHERE INSTR (message, ?) OR INSTR (title,?)";
-		String stmtInsertPost="INSERT INTO Post (title, message, timestamp, user) VALUES (?,?,?,?)";
+		String stmtInsertPost="INSERT INTO Post (title, message, user) VALUES (?,?,?)";
 
 		
 		// Methoden
@@ -35,8 +37,10 @@ public class H2PostDAO implements PostDAO{
 					// neuen temporären Post erstellen 
 					PostTransferObject tempPost= new PostTransferObject();
 					// temporären Post mit Daten aus der Tabelle füllen
-					tempPost.setTitle(rs.getNString("title"));
-					tempPost.setMessage(rs.getNString("message"));
+					tempPost.setTitle(rs.getNString("Post.title"));
+					tempPost.setMessage(rs.getNString("Post.message"));
+					tempPost.setUser(rs.getNString("User.name"));
+					tempPost.setTimestamp(rs.getTimestamp("Post.timestamp"));
 					//Post zur Liste hinzufügen
 					postList.add(tempPost);		
 				}
@@ -68,11 +72,15 @@ public class H2PostDAO implements PostDAO{
 					// neuen temporären Post erstellen 
 					System.out.println("Suche nach: "+searchValue+" war erfolgreich.");
 					// temporären Post mit Daten aus der Tabelle füllen
-					tempPost.setTitle(rs.getNString("title"));
-					tempPost.setMessage(rs.getNString("message"));
+					tempPost.setTitle(rs.getNString("Post.title"));
+					tempPost.setMessage(rs.getNString("Post.message"));
+					tempPost.setTimestamp(rs.getTimestamp("Post.timestamp"));
+					tempPost.setUser(rs.getNString("User.name"));
 					//Post zur Liste hinzufügen
-					postList.add(tempPost);		
+					postList.add(tempPost);	
 				}
+				
+				
 				
 				
 			}
@@ -119,13 +127,32 @@ public class H2PostDAO implements PostDAO{
 					PreparedStatement stmt=con.prepareStatement(stmtInsertPost);
 					stmt.setString(1, newPost.getTitle());
 					stmt.setString(2, newPost.getMessage());
-					stmt.setInt(3, 2);
+					stmt.setInt(3,1);
 					stmt.execute();
 					return true;
 				}
 				catch (SQLException e){
 					e.printStackTrace();
 					return false;
+				}
+			
+		}
+
+		
+		@Override
+		public String findUserName(int id) {
+				try {
+					PreparedStatement stmt2=con.prepareStatement(stmtSelectUser);
+					ResultSet rs2=stmt2.executeQuery();
+					while(rs2.next()){
+						System.out.println("ResultSet2 wurde gefunden");
+						return rs2.getString("name");
+					}
+					return "Error";
+				}
+				catch (SQLException e){
+					e.printStackTrace();
+					return "ERROR";
 				}
 			
 		}

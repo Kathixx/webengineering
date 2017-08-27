@@ -21,6 +21,7 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 								<ul class="nav navbar-nav">
 									<h:form>
 									<h:commandLink class="navLink" value="Login" action="#{navigation.goToLogin}" rendered="#{!navigation.loggedIn}"></h:commandLink>
+									<h:commandLink class="navLink" value="Registrieren" action="#{navigation.goToRegister}" rendered="#{!navigation.loggedIn}"></h:commandLink>
 									<h:commandLink class="navLink" value="Alle Posts" action="#{navigation.goToMainPage}" rendered="#{navigation.loggedIn}"></h:commandLink>
 									<h:commandLink class="navLink" value="Neuer Post anlegen" action="#{navigation.goToCreatePost}" rendered="#{navigation.loggedIn}"></h:commandLink> 
 									<h:commandLink class="navLink" value="Logout"  action="#{navigation.goToLogin}" rendered="#{navigation.loggedIn}"></h:commandLink> 

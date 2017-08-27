@@ -30,11 +30,13 @@
 			</div>
 			
 			<div class="row">
-			<h:dataTable value="#{postList.allPost}" var="post" id="ergebnis" rowClasses="order-table-row">
+			<h:dataTable value="#{postList.allPost}" var="post" id="ergebnis">
 				<h:column class="col-12">
 					<div class="jumbotron" >
 					<h2><h:outputText value="#{post.title}"/></h2>
+					<small>Verfasst von: <h:outputText value="#{post.user}"></h:outputText></small>
 					<p><h:outputText value="#{post.message}"/></p>
+					<small>veröffentlicht am <h:outputText value="#{post.timestamp}"></h:outputText></small>
 					</div>
 				</h:column>
 			</h:dataTable>

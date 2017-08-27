@@ -27,7 +27,7 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 							<div class="col-lg-offset-4 col-lg-4">
 								<h1> Registrieren</h1>
 								<p>Herzlich Willkommen auf Postit!<br> Hier kannst du dich registrieren.</br></p>
-				
+								
 								<h:form id="login-form">
 									Wähle deinen Benutzernamen:
 									<h:inputText class="form-control" id="username" value="#{user.name}" >
@@ -38,15 +38,15 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 									<br></br>
 									Wähle dein Passwort:
 									<h:inputSecret class="form-control"  id="password" value="#{user.password}" validator="#{user.passwordValidator}">
-										<f:validateLength minimum="3" maximum="20"/>
-										<f:validateRequired/>
+										<f:ajax render="registerErrorMessages" execute="@this " event="keyup"/>
 									</h:inputSecret>
 									<br></br>
 									Bitte wiederhole dein Passwort: 
 									<h:inputSecret class="form-control" id="password2" value='#{user.password2}'></h:inputSecret>
-									<h:commandButton class="btn" id="btn-register" value="Registrieren" action="#{user.add}"></h:commandButton>
+									<h:commandButton class="btn" type="submit" id="btnregister" value="Registrieren" action="#{user.add}" ></h:commandButton>
 									<h:commandButton class="btn" action="cancel" value="Zurücksetzen" immediate="true"/>
 								</h:form>
+							
 							</div>
 						</div>
 					</div>
